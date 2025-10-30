@@ -1,0 +1,171 @@
+# Falah Trading Bot Configuration
+
+# Trading Parameters
+trading:
+  initial_capital: 100000
+  max_positions: 5
+  risk_per_trade: 0.01 # 1% of capital per trade
+  max_position_size: 0.20 # Maximum 20% of capital in single position
+  position_sizing_method: "atr" # atr, fixed, percent
+
+# Risk Management
+risk_management:
+  max_daily_loss_pct: 0.05 # 5% daily loss limit
+  max_drawdown_pct: 0.10 # 10% maximum drawdown
+  cooling_mode_threshold: 0.08 # 8% drawdown triggers cooling mode
+  cooling_mode_risk_reduction: 0.5 # Reduce risk by 50% in cooling mode
+  max_correlation: 0.7 # Maximum correlation between positions
+
+# Order Execution
+execution:
+  order_type: "MARKET" # MARKET, LIMIT
+  product_type: "CNC" # CNC (delivery), MIS (intraday)
+  exchange: "NSE"
+  slippage_tolerance: 0.002 # 0.2% slippage tolerance
+  order_timeout: 30 # seconds
+
+# Technical Indicators
+indicators:
+  # ATR (Average True Range)
+  atr_period: 14
+  atr_multiplier: 2.8
+
+  # SuperTrend
+  supertrend_period: 10
+  supertrend_multiplier: 3.0
+
+  # RSI
+  rsi_period: 14
+  rsi_overbought: 70
+  rsi_oversold: 30
+
+  # MACD
+  macd_fast: 12
+  macd_slow: 26
+  macd_signal: 9
+
+  # Bollinger Bands
+  bb_period: 20
+  bb_std: 2.0
+
+  # EMA
+  ema_short: 10
+  ema_medium: 21
+  ema_long: 200
+
+  # Chandelier Exit
+  chandelier_period: 22
+  chandelier_multiplier: 2.0
+
+# Data Management
+data:
+  historical_days: 730 # 2 years
+  update_frequency: 60 # seconds
+  data_source: "zerodha" # zerodha, yahoo, csv
+  cache_enabled: true
+  cache_ttl: 300 # seconds
+
+# Timeframes
+timeframes:
+  primary: "15minute" # Primary trading timeframe
+  secondary: "hour" # Secondary confirmation timeframe
+  trend: "day" # Trend confirmation timeframe
+
+# Strategy Selection
+strategies:
+  active:
+    - "supertrend"
+    - "macd_rsi"
+
+  # SuperTrend Strategy Parameters
+  supertrend_strategy:
+    enabled: true
+    period: 10
+    multiplier: 3.0
+    volume_confirmation: true
+    volume_threshold: 1.2 # 20% above average
+    daily_trend_filter: true
+    profit_target_pct: 0.10 # 10% profit target
+    stop_loss_atr_mult: 2.5
+    trailing_stop_enabled: true
+    trailing_stop_activation: 0.05 # Activate after 5% profit
+
+  # MACD + RSI Strategy Parameters
+  macd_rsi_strategy:
+    enabled: true
+    rsi_min: 40
+    rsi_max: 70
+    macd_threshold: 0
+    bb_filter: true
+    daily_trend_filter: true
+    profit_target_pct: 0.08
+    stop_loss_atr_mult: 2.8
+
+  # Bollinger Breakout Strategy
+  bollinger_breakout_strategy:
+    enabled: false
+    breakout_threshold: 1.02 # 2% above upper band
+    volume_confirmation: true
+    rsi_filter: true
+    profit_target_pct: 0.06
+    stop_loss_pct: 0.03
+
+# Exit Management
+exit_management:
+  # Stop Loss
+  initial_stop_loss_method: "atr" # atr, percent, chandelier
+  trailing_stop_enabled: true
+  trailing_stop_method: "chandelier" # chandelier, atr, percent
+
+  # Profit Targets
+  profit_target_enabled: true
+  partial_exit_enabled: true
+  partial_exit_levels:
+    - level: 0.05 # 5% profit
+      exit_percent: 0.30 # Exit 30% of position
+    - level: 0.08 # 8% profit
+      exit_percent: 0.30 # Exit another 30%
+
+  # Time-Based Exits
+  max_holding_days: 30
+  intraday_exit_time: "15:15" # For MIS positions
+
+# Notifications
+notifications:
+  telegram_enabled: true
+  notification_types:
+    - "trade_execution"
+    - "position_update"
+    - "daily_summary"
+    - "risk_alert"
+    - "error"
+  daily_summary_time: "15:30"
+
+# Logging
+logging:
+  level: "INFO" # DEBUG, INFO, WARNING, ERROR
+  file_logging: true
+  console_logging: true
+  log_rotation: "1 day"
+  log_retention: "60 days"
+
+# Backtesting
+backtesting:
+  commission: 0.0003 # 0.03% per trade
+  slippage: 0.001 # 0.1% slippage
+  initial_capital: 100000
+
+# API Server
+api:
+  enabled: true
+  host: "0.0.0.0"
+  port: 8000
+  cors_enabled: true
+  auth_enabled: false # Set to true for production
+
+# Performance Monitoring
+monitoring:
+  metrics_enabled: true
+  performance_tracking: true
+  equity_curve_updates: "daily"
+  benchmark_symbol: "NIFTY 50"

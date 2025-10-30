@@ -1,0 +1,37 @@
+falah-trading-bot-v2
+├── DIRECTORY_STRUCTURE.txt
+├── IMPLEMENTATION_STATUS.md
+├── MIGRATION_GUIDE.md
+├── PROJECT_SUMMARY.md
+├── QUICKSTART.md
+├── README.md
+├── config
+│   └── config.yaml
+├── data
+│   ├── historical
+│   ├── live
+│   └── logs
+├── docs
+│   └── STRATEGIES.md
+├── main.py
+├── requirements.txt
+├── scripts
+├── src
+│   ├── __init__.py
+│   ├── api
+│   ├── core
+│   │   ├── __init__.py
+│   │   └── engine.py
+│   ├── indicators
+│   │   ├── __init__.py
+│   │   └── supertrend.py
+│   ├── strategies
+│   │   ├── __init__.py
+│   │   ├── base.py
+│   │   ├── macd_rsi_strategy.py
+│   │   └── supertrend_strategy.py
+│   └── utils
+└── tests
+    └── test_supertrend.py
+
+15 directories, 20 files

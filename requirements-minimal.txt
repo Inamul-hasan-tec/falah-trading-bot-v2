@@ -1,0 +1,9 @@
+# Minimal requirements to get started quickly
+# Install this first, then add more later
+
+# Core essentials only
+kiteconnect
+pandas
+numpy
+python-dotenv
+pyyaml
