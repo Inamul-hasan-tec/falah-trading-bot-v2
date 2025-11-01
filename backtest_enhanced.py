@@ -106,7 +106,9 @@ for symbol in symbols:
         
         # Run enhanced strategy
         strategy = EnhancedSuperTrendStrategy(config)
-        signals = strategy.generate_signals(df, df)
+        # Strategy expects a dictionary with timeframe data
+        data_dict = {'daily': df, 'hourly': df, '15min': df}
+        signals = strategy.generate_signals(data_dict)
         
         # Simulate trades
         trades = []
