@@ -188,6 +188,8 @@ for symbol in symbols:
         
     except Exception as e:
         print(f"   ❌ Error: {e}")
+        import traceback
+        traceback.print_exc()
         continue
 
 print("\n" + "="*70)
