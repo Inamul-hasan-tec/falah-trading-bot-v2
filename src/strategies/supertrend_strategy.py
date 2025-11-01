@@ -69,7 +69,7 @@ class SuperTrendStrategy(BaseStrategy):
         
         # Ensure SuperTrend indicator is calculated
         if 'supertrend_direction' not in primary_data.columns:
-            primary_data = self._calculate_supsertrend(primary_data)
+            primary_data = self._calculate_supertrend(primary_data)
         
         # Get latest data
         latest = primary_data.iloc[-1]
