@@ -97,7 +97,7 @@ class MacdRsiStrategy(BaseStrategy):
                 return False
         
         # Check daily trend filter
-        if self.daily_trend_filter and daily_data is not None:
+        if self.daily_trend_filter and daily_data is not None and not daily_data.empty:
             if not self.check_daily_trend(daily_data):
                 return False
         
