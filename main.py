@@ -215,3 +215,5 @@ if __name__ == '__main__':
     except Exception as e:
         logger.error(f"Fatal error: {e}", exc_info=True)
         sys.exit(1)
+
+# updated the code 8:18pm 1nov
