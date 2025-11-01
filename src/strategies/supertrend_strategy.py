@@ -55,16 +55,21 @@ class SuperTrendStrategy(BaseStrategy):
         signals = []
         
         # Get primary timeframe data (15min)
-        primary_data = data.get('15min') or data.get('primary')
+        primary_data = data.get('15min')
+        if primary_data is None or primary_data.empty:
+            primary_data = data.get('primary')
+
+        # Validate primary data
         if primary_data is None or primary_data.empty:
             return signals
+
         
         # Get daily data for trend filter
         daily_data = data.get('daily')
         
         # Ensure SuperTrend indicator is calculated
         if 'supertrend_direction' not in primary_data.columns:
-            primary_data = self._calculate_supertrend(primary_data)
+            primary_data = self._calculate_supsertrend(primary_data)
         
         # Get latest data
         latest = primary_data.iloc[-1]
